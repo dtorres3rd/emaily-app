@@ -5,6 +5,20 @@ const keys = require('../config/keys');
 
 const User = mongoose.model('users');
 
+// user params will be from mongoDb - user collection
+// turn user to internal mongoDb - user collection id 
+passport.serializeUser((user, done) => {
+    done(null, user.id);
+});
+
+// opposite of serializeUser
+passport.deserializeUser((id, done) => {
+    User.findById(id)
+        .then(user => {
+            done(null, user)
+        });
+});
+
 passport.use(
     new GoogleStrategy({
         clientID: keys.googleClientId,
