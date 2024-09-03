@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const keys = require('./config/keys');
+// initialize
 require('./models/Users');
 require('./services/passport');
 
@@ -10,9 +11,14 @@ mongoose.connect(keys.mongoURI);
 
 const app = express();
 
-// tell express to use the helper libraries
-// use cookie for session purposes
+app.get('/healthcheck', (req,res) => {
+    res.send({ status:'ok'});
+})
+
+// middlewares: preprocessing of incoming requests before sent out to route handles E.G. business logic - authentication
+// puts session data to req.session for passport consumption
 app.use(
+    // sessions manager
     cookieSession({
         // set cookie session expiry to 30 days
         maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -21,15 +27,14 @@ app.use(
     })
 );
 
+// pulls user id out of cookie data/ session data
 app.use(passport.initialize());
 app.use(passport.session());
 
-// routes available for this web server
+// route handlers: routes available for this web server
 require('./routes/authRoutes')(app);
 
-app.get('/healthcheck', (req,res) => {
-    res.send({ status:'ok'});
-})
+
 
 
 const PORT = process.env.PORT || 5000; 
