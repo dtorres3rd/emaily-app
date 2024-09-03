@@ -1,2 +1,2 @@
 # emaily-app
-Refresher app for tech stack react+node+mongodb a.k.a MERN stack
+Refresher mvp app utilizing tech stack react+node+mongodb a.k.a MERN stack
