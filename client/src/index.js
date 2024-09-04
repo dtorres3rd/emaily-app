@@ -1,17 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+// 1) Import ReactDOM library
+import ReactDOM from "react-dom/client";
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from "redux";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+// 2) Import App component as usual
+import App from './components/App';
+
+const store = createStore(() => [], {}, applyMiddleware());
+
+// 3) Get a reference to the div with ID root
+const el = document.getElementById("root");
+
+// 4) Tell React to take control of that element
+const root = ReactDOM.createRoot(el);
+
+// 5) Show the component on the screen
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <Provider store={store}><App /></Provider>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
