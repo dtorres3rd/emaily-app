@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
+const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 // initialize
 require('./models/Users');
@@ -16,6 +17,9 @@ app.get('/healthcheck', (req,res) => {
 })
 
 // middlewares: preprocessing of incoming requests before sent out to route handles E.G. business logic - authentication
+// this is for adding data in body of request. req.body
+app.use(bodyParser.json());
+
 // puts session data to req.session for passport consumption
 app.use(
     // sessions manager
@@ -33,8 +37,7 @@ app.use(passport.session());
 
 // route handlers: routes available for this web server
 require('./routes/authRoutes')(app);
-
-
+require('./routes/billingRoutes')(app);
 
 
 const PORT = process.env.PORT || 5000; 

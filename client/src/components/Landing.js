@@ -1,5 +1,6 @@
 import React from "react";
 
+// functional components
 const Landing = () => {
     return (
         <div style={{ textAlign:'center'}}>
