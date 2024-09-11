@@ -12,8 +12,8 @@ mongoose.connect(keys.mongoURI);
 
 const app = express();
 
-app.get('/healthcheck', (req,res) => {
-    res.send({ status:'ok'});
+app.get('/healthcheck', (req, res) => {
+    res.send({ status: 'ok' });
 })
 
 // middlewares: preprocessing of incoming requests before sent out to route handles E.G. business logic - authentication
@@ -38,6 +38,17 @@ app.use(passport.session());
 // route handlers: routes available for this web server
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
+
+if (process.env.NODE_ENV = 'production') {
+    // Express will serve production assets. e.g. main.js or main.css files
+    app.use(express.static('client/build'));
+
+    // If express does not recognize route, will serve index.html file
+    const path = require('path');
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+};
 
 
 const PORT = process.env.PORT || 5000; 
