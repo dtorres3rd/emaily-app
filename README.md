@@ -9,6 +9,7 @@
 - Client-Payments: Stripe via react-stripe-checkout package (this is using checkout.js as base package)
 - Server-Payments: Stripe
 - Server-Middleware: request-body-parser this is for adding data in body of request. req.body
+- Server-Email-Provider: SendGrid, maybe switch to Mailgun in the future
 
 Run locally:
  - run npm install in server and client folder

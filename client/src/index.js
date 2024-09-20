@@ -10,6 +10,11 @@ import { thunk } from 'redux-thunk';
 import App from './components/App';
 import reducers from "./reducers";
 
+// dev purposes - api testing, only enable this in local host
+// import axios from 'axios';
+// window.axios = axios;
+// end dev purposes
+
 const store = createStore(reducers, {}, applyMiddleware(thunk));
 
 // 3) Get a reference to the div with ID root
