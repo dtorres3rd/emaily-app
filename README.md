@@ -12,5 +12,5 @@
 - Server-Email-Provider: SendGrid, maybe switch to Mailgun in the future
 
 Run locally:
- - run npm install in server and client folder
- - run npm dev from server folder
+ - run npm install in root directory and client folder
+ - run npm dev from root directory
