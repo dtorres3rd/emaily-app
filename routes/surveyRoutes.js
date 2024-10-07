@@ -11,7 +11,7 @@ const surveyTemplate = require("../services/emailTemplates/surveyTemplate");
 const Survey = mongoose.model("survey");
 
 module.exports = (app) => {
-  app.get("/api/surveys/thanks", (req, res) => {
+  app.get("/api/surveys/:surveyId/:choice", (req, res) => {
     res.send("Thanks for voting!");
   });
 
@@ -42,6 +42,7 @@ module.exports = (app) => {
           {
             $inc: { [choice]: 1 }, // this auto detects if the choice variable contains a value of yes or no then increments it in the collection
             $set: { 'recipients.$.responded': true },
+            lastResponded: new Date()
           }
         ).exec();
       })
