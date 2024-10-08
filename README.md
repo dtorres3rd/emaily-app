@@ -15,3 +15,4 @@
 Run locally:
  - run npm install in root directory and client folder
  - run npm dev from root directory
+ - Note: now uses and requires ngrok installed locally when testing sendgrid webhook 
