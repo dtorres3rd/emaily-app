@@ -10,6 +10,7 @@
 - Server-Payments: Stripe
 - Server-Middleware: request-body-parser this is for adding data in body of request. req.body
 - Server-Email-Provider: SendGrid, maybe switch to Mailgun in the future
+- Database: Mongodb via mongoose and hosted at https://cloud.mongodb.com/
 
 Run locally:
  - run npm install in root directory and client folder
